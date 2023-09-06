@@ -1,0 +1,28 @@
+
+
+
+// -------------------------------------- //
+//              Transaction Model                //
+// -------------------------------------- //
+
+model Transaction {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  hash       String   @unique
+  method     String
+  from       String
+  to         String
+  value      Float
+  fee        Float
+  time      String
+  user_id     String
+  created_at String
+
+}
+
+// -------------------------------------- //
+//              Transaction Model End            //
+// -------------------------------------- //
+
+
+
+

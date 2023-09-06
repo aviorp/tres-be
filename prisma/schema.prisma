@@ -1,0 +1,58 @@
+// -------------------------------------- //
+//              Prisma Config             //
+// -------------------------------------- //
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native"]
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DB_URI")
+}
+
+// -------------------------------------- //
+//              Prisma Config End         //
+// -------------------------------------- //
+
+// -------------------------------------- //
+//              Transaction Model                //
+// -------------------------------------- //
+
+model Transaction {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  hash       String @unique
+  method     String
+  from       String
+  to         String
+  value      Float
+  fee        Float
+  time       String
+  user_id    String
+  created_at String
+}
+
+// -------------------------------------- //
+//              Transaction Model End            //
+// -------------------------------------- //
+
+// -------------------------------------- //
+//              User Model                //
+// -------------------------------------- //
+
+model User {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  first_name String
+  last_name  String
+  password   String
+  image      String
+  username   String   @unique
+  is_admin   Boolean? @default(false)
+  created_at String?
+  clerk_id   String?  @unique
+}
+
+// -------------------------------------- //
+//              User Model End            //
+// -------------------------------------- //
